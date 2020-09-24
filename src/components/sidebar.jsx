@@ -12,10 +12,10 @@ import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 
 import "../styles/sidebar.css";
 
-export default function Sidebar() {
+export default function Sidebar({ menu }) {
   return (
-    <div className="sidebar_container">
-      <small style={{ color: "#343945", marginLeft: 70 }}>Categories</small>
+    <div className={`sidebar_container ${menu && "menu_active"}`}>
+      <small style={{ color: "#343945", marginLeft: "70px" }}>Categories</small>
       <div className="sidebar_menu">
         <SidebarItem icon={HomeRoundedIcon} text="Main Page" />
         <SidebarItem icon={LiveTvRoundedIcon} text="TV Channels" />

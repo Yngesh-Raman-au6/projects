@@ -1,6 +1,7 @@
 .home_container {
   position: relative;
   flex: 0.75;
+  padding-left: 20px;
   padding-bottom: 30px;
   padding-right: 70px;
   overflow-y: scroll;
@@ -17,6 +18,9 @@
 /* carousel stylings */
 
 .card_container {
+  width: 215px;
+  min-width: 215px;
+  margin: 5px 5px;
   box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.3);
   transition: transform 0.5s;
   cursor: pointer;
@@ -28,7 +32,7 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   height: 80px;
-  width: 170px;
+  width: 100%;
 }
 
 .collections_headings {
@@ -36,6 +40,7 @@
   margin-bottom: 10px;
   margin-top: 15px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
@@ -58,14 +63,17 @@
 }
 .movie_collections {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .new_movie_collections {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .info {
+  padding: 0 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,4 +88,17 @@
   margin-left: 2px;
   font-size: 12px;
   font-weight: 800;
+}
+
+@media only screen and (max-width: 1200px) {
+  .home_container {
+    flex: 1;
+    padding: 0 70px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home_container {
+    padding: 0 10px;
+  }
 }

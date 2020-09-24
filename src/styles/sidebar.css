@@ -1,7 +1,7 @@
 .sidebar_container {
   display: flex;
   flex-direction: column;
-  flex: 0.3;
+  flex: 0.25;
   padding-bottom: 30px;
 }
 .sidebar_item {
@@ -49,4 +49,25 @@
   margin-right: 10px;
   height: 20px;
   width: 70px;
+}
+@media only screen and (max-width: 1200px) {
+  .sidebar_container {
+    position: absolute;
+    opacity: 0;
+    background-color: #10182a;
+    transition-duration: 0.3s;
+  }
+  .sidebar_item,
+  .download {
+    margin-left: 20px;
+  }
+  .menu_active {
+    display: block;
+    width: 300px;
+    min-width: 150px;
+    background-color: #10182a;
+    z-index: 10000000;
+    position: absolute;
+    opacity: 1;
+  }
 }

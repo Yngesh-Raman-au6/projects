@@ -16,7 +16,7 @@ const items = [
     caption: "Slide 1",
     src:
       "https://cdn.onebauer.media/one/empire-tmdb/films/157336/images/xu9zaAevzQ5nnrsXN6JcahLnG4i.jpg?quality=50&width=1800&ratio=16-9&resizeStyle=aspectfill&format=jpg",
-    title: "Thor"
+    title: "Interstellar"
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const items = [
     caption: "Slide 2",
     src:
       "https://i.pinimg.com/originals/b6/21/63/b62163e3a3f64f037f45c62823664c61.jpg",
-    title: "Oblivion"
+    title: "Adventure"
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const items = [
     caption: "Slide 3",
     src:
       "https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/huffpost_tomorrowland.png",
-    title: "Aquaman"
+    title: "Alone"
   }
 ];
 
@@ -85,7 +85,7 @@ const App = (props) => {
   });
 
   return (
-    <div>
+    <div className="carousel_area">
       <Carousel activeIndex={activeIndex} next={next} previous={previous}>
         <CarouselIndicators
           items={items}

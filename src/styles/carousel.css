@@ -1,6 +1,13 @@
+.carousel_area {
+  min-width: 250px;
+  min-height: 150px;
+}
 .custom-tag-img {
+  height: 30vmax;
   width: 100%;
-  height: 300px;
+  min-height: 150px;
+  min-width: 250px;
+  overflow: hidden;
   border-radius: 15px;
 }
 
@@ -11,16 +18,16 @@
   left: 120px;
   width: 400px;
   font-size: 11px;
-  color: rgb(160, 152, 152);
+  color: rgb(233, 233, 233);
 }
 
 .posterDetails h3 {
-  color: white;
+  color: rgb(228, 228, 228);
   margin: 20px 0;
 }
 
 .posterDetails .butns button:hover {
-  color: white;
+  color: rgb(231, 231, 231);
   background: #242836e5;
 }
 .posterDetails .butns button {
@@ -36,4 +43,22 @@
 .posterDetails p {
   margin: 10px;
   color: WHITE;
+}
+
+@media only screen and (max-width: 900px) {
+  .posterDetails {
+    top: 40px;
+    left: 50px;
+    min-width: 200px;
+  }
+  .posterDetails > p {
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .posterDetails {
+    top: 30px;
+    left: 30px;
+    min-width: 200px;
+  }
 }

@@ -5,11 +5,10 @@
 
 .App {
   background-image: url("https://cdn.onebauer.media/one/empire-images/features/5718b250b602bb802e20f3e6/wormhole.jpg?quality=50&width=1000&ratio=1-1&resizeStyle=aspectfit&format=jpg");
-  padding: 30px;
   font-family: sans-serif;
 }
 
-.container {
+.mycontainer {
   background: linear-gradient(
     50deg,
     #0e111a 0%,
@@ -18,12 +17,10 @@
     #10182a 100%
   );
 
-  border-radius: 35px;
   height: 100%;
   border: 1px solid black;
 }
 .home {
   position: relative;
   display: flex;
-  height: calc(100% - 60px);
 }
