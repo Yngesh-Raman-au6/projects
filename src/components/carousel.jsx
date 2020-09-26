@@ -66,7 +66,15 @@ const App = (props) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        <img className="custom-tag-img" src={item.src} alt="im" />
+        <div
+          className="custom-tag-img"
+          style={{
+            backgroundImage: `url(${item.src})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "50% 50%"
+          }}
+        ></div>
         <div className="posterDetails">
           <div className="theme">Action | Drama | Movie | Adventure</div>
           <h1>{item.title}</h1>
