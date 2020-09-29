@@ -1,0 +1,61 @@
+.ticketDetails_container {
+  background-color: #151515;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+}
+.tickets {
+  margin: 15px 0;
+  border-bottom: 1px solid rgb(59, 59, 59);
+}
+.ticket_details {
+  padding: 8px 0px;
+  display: flex;
+  justify-content: center;
+}
+.tax_percent {
+  margin-bottom: 2px;
+  color: rgb(136, 136, 136);
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+.tax_area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.ticket_details > .tickets_left {
+  line-height: 18px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.ticket_details > .tickets_right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+.tickets > p {
+  margin-bottom: 2px;
+  color: rgb(136, 136, 136);
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+.ticket_item {
+  margin-bottom: 2px;
+  color: rgb(224, 224, 224);
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-weight: 400;
+}
+.tickets_right > h2 {
+  margin-bottom: 2px;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}

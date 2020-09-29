@@ -1,0 +1,94 @@
+.payment_container {
+  display: flex;
+  margin: 0 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #151515;
+  align-items: center;
+}
+.payment_header {
+  border-bottom: 1px solid rgb(90, 90, 90);
+  width: 100%;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.payment_header > h1 {
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.payment_logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Mada_Logo.svg/1280px-Mada_Logo.svg.png");
+  height: 40px;
+  width: 140px;
+}
+
+.payment_body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+  width: 100%;
+}
+
+.terms {
+  min-width: 240px;
+
+  width: 30%;
+}
+.check1,
+.check2 {
+  margin-left: 10px;
+  margin-top: 10px;
+  display: flex;
+}
+.terms label {
+  font-weight: 300;
+  color: rgb(199, 199, 199);
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-left: 20px;
+}
+
+.pay_button > button {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgb(136, 136, 136);
+  letter-spacing: 1px;
+  background-color: #2b2b2b;
+  padding: 10px 45px;
+  outline: none;
+  border-radius: 3px;
+  border: none;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.pay_button > button:hover {
+  background-color: rgb(53, 53, 53);
+}
+.pay_button > button:active {
+  background-color: rgb(36, 36, 36);
+}
+
+@media only screen and (max-width: 600px) {
+  .pay_button > button {
+    margin: 20px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+  }
+  .terms {
+    min-width: 240px;
+    padding-right: 20px;
+    width: 100%;
+  }
+}

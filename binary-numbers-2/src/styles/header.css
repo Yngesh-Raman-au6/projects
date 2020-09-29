@@ -1,0 +1,94 @@
+.header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #151515;
+  color: rgb(235, 235, 235);
+}
+.header_body {
+  width: 100%;
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo_img {
+  cursor: pointer;
+  height: 50px;
+  width: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-image: url("https://cinepolisdevcdnstr.blob.core.windows.net/sitefinity/images/default-source/default-album/logos-cinepolis.png?sfvrsn=2c4ba690_0");
+}
+
+.navbar {
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  align-items: center;
+}
+.navbar > .navbar_item {
+  letter-spacing: 1px;
+  border-top: 1px solid #151515;
+  border-bottom: 1px solid #151515;
+  padding: 5px 0;
+  margin: 0 20px;
+}
+.navbar > .navbar_item:hover {
+  border-bottom: 1px solid #6236ff;
+  cursor: pointer;
+}
+.nav_button {
+  outline: none;
+  letter-spacing: 1px;
+  color: rgb(240, 240, 240);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  padding: 7px;
+  background-color: #6236ff;
+  height: 25px;
+  border: none;
+  margin-left: 20px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.hamburger {
+  display: none;
+}
+@media only screen and (max-width: 900px) {
+  .hamburger {
+    display: block;
+  }
+  .navbar {
+    display: none;
+  }
+  .menu_active {
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    top: 61px;
+    left: 0px;
+    position: absolute;
+    opacity: 0.95;
+    background-color: #151515;
+    width: 100vw;
+  }
+  .menu_active > .navbar_item:hover {
+    border-bottom: 1px solid #6236ff;
+    cursor: pointer;
+  }
+  .nav_button {
+    margin: 0;
+    padding: 20px;
+    margin-bottom: 60px;
+  }
+}

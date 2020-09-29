@@ -1,0 +1,53 @@
+.movieDetails_container {
+  margin-top: 5px;
+  padding: 15px;
+  background-color: #151515;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.poster {
+  background-image: url("https://upload.wikimedia.org/wikipedia/en/1/1f/Knives_Out_poster.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-right: 10px;
+  height: 130px;
+  min-width: 100px;
+}
+.poster_details {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.poster_details > .p1 {
+  margin-bottom: 2px;
+  color: rgb(136, 136, 136);
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+.poster_details > h2 {
+  margin-bottom: 2px;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.poster_details > .p2 {
+  margin-bottom: 2px;
+  color: rgb(224, 224, 224);
+  letter-spacing: 1px;
+  font-size: 15px;
+  font-weight: 400;
+}
+.poster_details > .p3 {
+  margin-bottom: 2px;
+  color: rgb(224, 224, 224);
+  letter-spacing: 2px;
+  font-size: 18px;
+  font-weight: 300;
+}

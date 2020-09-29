@@ -11,13 +11,22 @@ const mongoose = require("mongoose");
 //=================================
 router.post("/enter", async (req, res) => {
 	try {
-		const user = await new User(req.body).save();
+		console.log("INSIDE ENTER>>>>>", req.body);
+		let enterUser = "";
+		const exist = await User.findOne({ name: req.body.name });
+		console.log("EXIST_______", exist);
+		if (exist) {
+			enterUser = exist;
+		} else {
+			enterUser = await new User(req.body).save();
+		}
 
 		return res.status(200).json({
 			success: true,
-			user,
+			enterUser,
 		});
 	} catch (err) {
+		console.log("ERRORRRRR");
 		res.send(err);
 	}
 });
@@ -37,19 +46,97 @@ router.post("/add-relation", async (req, res) => {
 		res.send(err);
 	}
 });
-
-router.get("/dashboard", async (req, res) => {
+router.post("/edit", async (req, res) => {
 	try {
-		// const sample = "5f6f6483fe82f31da03d1a7a";
-		const sample = "5f6f75f848f8714890ea436e";
+		const { from, to, type } = req.body;
+		console.log(req.body);
+		let rel = Relation.findOneAndUpdate({ from: from, to: to }, { type: type });
+		res.status(200).json({
+			rel,
+		});
+	} catch (err) {
+		res.send(err);
+	}
+});
+
+router.post("/dashboard", async (req, res) => {
+	try {
+		const { id } = req.body;
+		// const sample = "5f6f75f848f8714890ea436e";
 		// _id: { $ne: sample }
-		const allUsers = await User.find({}).populate("relatives", ["name"]);
+		let allUsers;
 		let newAllUsers = [];
-		for (let i = 0; i < allUsers.length; i++) {
-			const rel = await Relation.findOne({ from: sample, to: allUsers[i]._id });
-			// console.log("FOUND RELATIONS---->", rel);
-			let userUpdate = { ...allUsers[i]._doc };
-			console.log("USER UPDATE OBJECT---->", userUpdate);
+
+		console.log("idRRR______", id);
+		if (id == "NaN") {
+			console.log("INSIDE IF TRUE_______");
+			allUsers = await User.find({}).populate("relatives", ["name"]);
+			console.log("ALLUSER________IF____________", allUsers);
+
+			for (let i = 0; i < allUsers.length; i++) {
+				console.log("REACHED INSIDE LOOOOOOOOOOOOOOOP");
+				let userUpdate = { ...allUsers[i]._doc };
+				userUpdate.relation = "No Relation";
+				newAllUsers.push(userUpdate);
+			}
+		} else {
+			console.log("INSIDE ELSE TRUE_______");
+
+			allUsers = await User.find({
+				_id: { $ne: id },
+			}).populate("relatives", ["name"]);
+			console.log("ALLUSER__________ELSE__________", allUsers);
+
+			for (let i = 0; i < allUsers.length; i++) {
+				const rel = await Relation.findOne({ from: id, to: allUsers[i]._id });
+				let userUpdate = { ...allUsers[i]._doc };
+				if (rel) {
+					userUpdate.relation = rel.type;
+				} else {
+					userUpdate.relation = "No Relation";
+				}
+				newAllUsers.push(userUpdate);
+			}
+		}
+
+		console.log("ALLUSER____________________", allUsers);
+
+		console.log("All USERS----->", newAllUsers);
+		res.status(200).json({
+			// allUsers,
+			newAllUsers,
+		});
+	} catch (err) {
+		console.log("ERRRRRRRRRRR");
+		res.send(err);
+	}
+});
+
+const result = [];
+let isDone;
+let popper = 0;
+
+router.post("/degree", async (req, res) => {
+	isDone = false;
+	popper = 0;
+	while (result.length) {
+		result.pop();
+	}
+	try {
+		const user = "5f6f75f848f8714890ea436e";
+
+		console.log("finding degree------------");
+		const { first, second } = req.body;
+		result.push(first);
+		const data = await User.find({}).populate("relatives", ["name"]);
+		// console.log("+++++++++++++++++++++", data);
+
+		let newAllUsers = [];
+		for (let i = 0; i < data.length; i++) {
+			// console.log("ENTERED LOOOOOOOOOOOOOOOOOP");
+			const rel = await Relation.findOne({ from: user, to: data[i]._id });
+			let userUpdate = { ...data[i]._doc };
+			// console.log("USER UPDATE OBJECT---->", userUpdate);
 			if (rel) {
 				userUpdate.relation = rel.type;
 			} else {
@@ -57,24 +144,16 @@ router.get("/dashboard", async (req, res) => {
 			}
 			newAllUsers.push(userUpdate);
 		}
-		console.log("All USERS----->", newAllUsers);
-		res.status(200).json({
-			newAllUsers,
-		});
-	} catch (err) {
-		res.send(err);
-	}
-});
-let chain = [];
 
-router.post("/degree", async (req, res) => {
-	try {
-		const { first, second } = req.body;
-
-		// chain.push(mongoose.Types.ObjectId(first));
-		findDegree(first, second);
+		findR(first, second, newAllUsers);
+		let degree = result;
+		// console.log("---------------------", newAllUsers);
+		if (result.length === 1) {
+			degree = "No Relation";
+		}
 		res.status(200).json({
 			success: true,
+			degree,
 		});
 	} catch (err) {
 		res.send(err);
@@ -82,37 +161,38 @@ router.post("/degree", async (req, res) => {
 });
 
 //---------- recursion
-let done = false;
-let popper = 0;
-const findDegree = async (f, s) => {
-	chain.push(f.toString());
-	console.log("this is chain---", chain);
-	if (f == s) {
-		let pureChain = [...new Set(chain)];
-		console.log("found CHAIN----->", chain);
-		done = true;
+
+function findR(first, last, data) {
+	// console.log("----------STARTED-----------", data);
+	console.log("CHECKING_______", first, last);
+	if (first === last) {
+		isDone = true;
 		return;
 	}
-	const user = await User.findOne({ _id: f });
+	console.log("DONE___", isDone);
+	if (isDone) return;
 
-	if (user.relatives.length > 0) {
-		for (let i = 0; i < user.relatives.length; i++) {
-			if (done) {
-				return;
-			}
-			popper++;
-			console.log("chain BUILDING------>", user.relatives[i]);
-			findDegree(user.relatives[i]._id, s);
+	const { relatives: relArray } = data.find((ele) => {
+		// console.log("ELEMENT____", ele);
+		if (ele.name === first) return ele;
+	});
+	console.log({ relArray });
+	if (!relArray.length) {
+		while (popper) {
+			result.pop();
+			popper--;
 		}
 	} else {
-		for (let j = 0; j < popper; j++) {
-			chain.pop();
-		}
-		popper = 0;
-		return;
+		relArray.forEach((ele) => {
+			console.log("INSIDE FINAL_______", ele);
+			if (isDone) return;
+			popper++;
+			result.push(ele.name);
+			console.log({ result });
+			findR(ele.name, last, data);
+		});
 	}
-};
-//--------------------
+}
 
 router.post("/login", (req, res) => {
 	User.findOne({ email: req.body.email }, (err, user) => {
